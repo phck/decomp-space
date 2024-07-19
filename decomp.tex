@@ -14,6 +14,7 @@
 \usepackage{mathtools}
 \usepackage{comment}
 \usepackage{cite}
+\frenchspacing
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -29,6 +30,7 @@
 \newtheorem{exercise}[theorem]{Exercise}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem{diversion}[theorem]{Diversion}
 
 \newcommand{\set}{\mathsf{Set}}
 \newcommand{\spaces}{\mathsf{Space}}
@@ -69,16 +71,25 @@ colorinlistoftodos,disable]
 \newcommand{\phnote}[1]{\todo[color=purple!40,linecolor=purple!40!black,size=\tiny]{#1}}
 \newcommand{\phnoteil}[1]{\ \todo[inline,color=purple!40,linecolor=purple!40!black,size=\normalsize]{#1}}
 
+\begin{document}
 
-\title{An Introduction to Decomposition Spaces}
+\title{The Decomposition Space Perspective}
 \author{Philip Hackney}
 \address{Department of Mathematics, University of Louisiana at Lafayette, USA}
 \email{philip@phck.net}
-\thanks{This work was supported by a grant from the Simons Foundation (\#850849).}
+\thanks{This work was supported by a grant from the Simons Foundation (\#850849) and by the Louisiana Board of Regents through the Board of Regents Support fund LEQSF(2024-27)-RD-A-31.}
 
 \date{\today; visit \url{https://github.com/phck/decomp-space} for updates.}
 
-\begin{document}
+\keywords{decomposition space, 2-Segal space}
+
+\subjclass[2020]{Primary: 
+18N50, % Simplicial sets, simplicial objects
+Secondary: 
+18F20, % Presheaves and sheaves, stacks, descent conditions
+55U10, % Simplicial sets and complexes in algebraic topology
+18N60} % (∞,1)-categories (quasi-categories, Segal spaces, etc.); ∞-topoi, stable ∞-categories
+
 \maketitle
 
 \begin{comment}
@@ -113,7 +124,7 @@ We will also write composite diagrams without fully specifying the shape categor
 One could also work with simplicial objects in an arbitrary $(\infty,1)$-category $C$ having finite limits.
 \end{enumerate}
 We will altogether avoid discussing anything from the perspective of Quillen model categories.
-A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below.
+A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below.\phnote{Cite a few such sources.}
 
 \subsection*{Acknowledgements}
 \phnoteil{Organizers, BIRS, etc.}
@@ -199,7 +210,7 @@ The pair of subcategories $(\delact, \delint)$ constitutes a factorization syste
 \end{lemma}
 An \emph{orthogonal factorization system} on a category $C$ consists of a pair of wide subcategories $(L,R)$ such that every map in $C$ factors as $r\circ \ell$ for some $r\in R$ and $\ell \in L$, this factorization is unique up to unique isomorphism, and $L\cap R$ contains all isomorphisms.
 A \emph{strict factorization system} is similar, except that we only require one condition of the wide subcategories: every map factors \emph{uniquely} as $r\circ \ell$.
-In general, the two notions are not directly comparable (though there is an enveloping construction for strict factorization systems \cite[2.1]{Grandis:WSEMCC}), but in our case there is no ambiguity as the only isomorphisms in $\Delta$ are identities.
+In general, the two notions are not directly comparable (though there is an enveloping construction for strict factorization systems \cite[2.1]{Grandis:WSEMCC}, \cite[3.1]{RosebrughWood:DLF}), but in our case there is no ambiguity as the only isomorphisms in $\Delta$ are identities.
 Generalizations of this factorization system to other shape categories are an essential component of Segalic approaches to higher structures \cite{Berger:MCO,ChuHaugseng:HCASC,Hackney:SCGO} (see \cref{def Segal} below).
 
 In the next section, we will make use of a special property of $\Delta$, which is that active-inert pushouts exist.
@@ -261,6 +272,10 @@ If working with simplicial sets rather than simplicial spaces, these will just b
 
 A simplicial set which is a decomposition space will be called a \emph{discrete decomposition space}.
 
+\begin{diversion}[Variations]
+\phnoteil{Write about other categories with active-inert factorization systems. \cite{Burkin:TACOSC,Berger:MCO,Contreras_et_al:FCPBS}}
+\end{diversion}
+
 If $C$ is a category, then the nerve of $C$ is a (discrete) decomposition space.
 We return to this example in \cref{sec segal spaces}.
 A rich source of combinatorial examples are the free decomposition spaces, which we discuss in \cref{sec free}.
@@ -289,7 +304,8 @@ see \cref{exc 2-Segal defs}.
 Also note that upper and lower 2-Segal spaces are independently of interest: Garner--Kock--Weber \cite{GarnerKockWeber:OCD} showed that unary operadic categories are the same thing as upper 2-Segal sets (see also \cite{Hackney:OC2SS}), while Carawan \cite{Carawan:2SMACWC} gives examples of lower 2-Segal objects coming from the $S_\bullet$-construction applied to a cofibration category.
 
 \begin{example}[Simplicial groupoid of rooted forests]\label{ex forests}
-A fundamental example of \cite{GKT1}, which will reappear in \cite{Tonks:BIRS}, concerns the simplicial groupoid $H$ which underlies the Butcher--Connes--Kreimer Hopf algebra \cite{ConnesKreimer:HARNG}.
+A fundamental example of \cite{GKT1} %, which will reappear in \cite{Tonks:BIRS}, 
+concerns the simplicial groupoid $H$ which underlies the Butcher--Connes--Kreimer Hopf algebra \cite{ConnesKreimer:HARNG}.
 For $n \geq 0$, $H_{n+1}$ is the groupoid of forests together with $n$ (compatible) admissible cuts.
 For example, the following forest is an object of $H_1$,
 \begin{center}
@@ -341,9 +357,10 @@ Show that every partial monoid is 2-Segal using only \cref{def 2-segal}.
 
 This can be extended to a kind of partial category. % See https://mathoverflow.net/q/327099
 Let $\catpar$ denote the category whose objects are sets and whose morphisms are partial functions, considered as a monoidal category using the cartesian product of sets.
+\phnote{Consider removing partial categories.}
 
 \begin{exercise}
-Let $C$ be a (small) category enriched in $\catpar$.
+Let $C$ be a small category enriched in $\catpar$.
 Show that if the set $C(x,x)$ is inhabited for every object $x$ of $C$, then $C$ determines a simplicial set which is 2-Segal.
 (Without this assumption, one still obtains a semi-simplicial 2-Segal set.) 
 \end{exercise}
@@ -356,7 +373,8 @@ In a similar manner, the $\catpar$-enriched categories from the preceding exerci
 
 \section{2-Segal spaces are decomposition spaces}\label{sec 2-Segl decomp}
 
-In this section we discuss the following fundamental result from \cite{Feller_et_al:E2SSU}.\phnote{Mention here that it was known much earlier that decomposition spaces and unital 2-Segal spaces were the same.}
+In this section we discuss the following fundamental result. % from \cite{Feller_et_al:E2SSU}.
+\phnote{Mention \cite{Feller_et_al:E2SSU} and that it was known much earlier that decomposition spaces and unital 2-Segal spaces were the same.}
 
 \begin{theorem}\label{thm unitality} 
 A simplicial space $X$ is a decomposition space if and only if it is both upper and lower 2-Segal.
@@ -719,7 +737,8 @@ This proof relies on the path space criterion (\cref{cor path space}), which is 
 A simplicial space $X$ is a decomposition space if and only if its edgewise subdivision $\sd X$ is Segal.
 \end{theorem}
 
-As with the d\'ecalage functors, the edgewise subdivision is the result of precomposition with an endofunctor of $\Delta$, namely the one which sends $[n]$ to $[n]^\op \star [n] \cong [2n+1]$.
+As with the d\'ecalage functors, the edgewise subdivision is the result of precomposition with an endofunctor of $\Delta$, namely the one which sends $[n]$ to $[n]^\op \star [n] \cong [2n+1]$.\footnote{
+Here $\star$ denotes the \emph{join} of categories \cite[\href{https://kerodon.net/tag/0160}{Tag 0160}]{kerodon}, where the set of objects of $C \star D$ is the disjoint union of the sets of objects of $C$ and $D$, the categories $C$ and $D$ are full subcategories of $C\star D$, and, for $c\in C$ and $d\in D$, there are no morphisms $d\to c$ and exactly one morphism $c\to d$.}
 A map $f \colon [n] \to [m]$ is sent to $g \colon [2n+1] \to [2m+1]$ with
 \[
 g(t) = \begin{cases}
@@ -1010,7 +1029,7 @@ The category of outer face complexes is equivalent to the category of culf maps 
 \end{theorem}
 
 % This is the main theorem of \cite{HackneyKock:FDS}.
-We have not explained what a culf map is (a natural transformation whose restriction to $\delact$ is cartesian), but this important concept will play a key role in later papers in this volume \cite{CooperYoung:BIRS,Tonks:BIRS}.
+While we have not explained what a culf map is (a natural transformation whose restriction to $\delact$ is cartesian), this important concept will play a key role in other papers in this volume \cite{CooperYoung:BIRS,GKT:DSC}.
 \begin{comment}
 Let us just observe that the situation is \emph{somewhat} reasonable: each outer face complex admits a unique map to the terminal object, and we saw that $j_!$ takes this terminal object to $B\mathbb{N}$.
 \begin{exercise} 
