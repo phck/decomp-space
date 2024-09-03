@@ -90,6 +90,14 @@ Secondary:
 55U10, % Simplicial sets and complexes in algebraic topology
 18N60} % (∞,1)-categories (quasi-categories, Segal spaces, etc.); ∞-topoi, stable ∞-categories
 
+\begin{abstract}
+This paper provides an introduction to decomposition spaces and 2-Segal spaces, unifying the two perspectives.
+We begin by defining decomposition spaces using the active-inert factorization system on the simplicial category, and show their equivalence to 2-Segal spaces. 
+Key results include the path space criterion, which characterizes decomposition spaces in terms of their upper and lower décalages, and the edgewise subdivision criterion. 
+We also introduce free decomposition spaces arising from outer face complexes, providing a rich source of examples. 
+Formal prerequisites are minimal -- readers should have a working knowledge of simplicial methods and basic category theory.
+\end{abstract}
+
 \maketitle
 
 \begin{comment}
@@ -106,14 +114,37 @@ But everything holds equally well for simplicial \emph{sets}, and we encourage r
 \end{convention}
 \end{comment}
 
+\section{Introduction}
+
+Decomposition spaces were introduced by Imma G\'alvez-Carillo, Joachim Kock, and Andrew Tonks in a long preprint in 2014, which now comprises six papers \cite{GKT1,GKT2,GKT3,GKT:DSC,GKT:DSRS,GKT:HLA}.
+Their goals were to develop a very general framework for incidence algebras and Möbius inversion that could unify and extend various examples arising in algebraic combinatorics.
+
+% Further developments along these lines.
+% \cite{Carlier:HSMDS} and \cite{Carlier:IBMIRF} and \cite{CarlierKock:AMDS} and \cite{CebrianForero:DHSDS} and \cite{Forero:GCKTCLDDS}
+
+
+Decomposition spaces are the same thing as the 2-Segal spaces of Dyckerhoff and Kapranov \cite{DyckerhoffKapranov:HSS}. 
+This was first observed for \emph{unital} 2-Segal spaces, as described in \cite[p.~959]{GKT1}:
+
+\begin{quote}
+The coincidence of the notions was noticed by Mathieu Anel because two of the basic results are the same: specifically, the characterisation in terms of decalage and Segal spaces \dots{} and the result that the Waldhausen $S_\bullet$-construction of a stable $\infty$-category is a decomposition space \dots{}
+\end{quote}
+Later on it was realized by Feller \emph{et~al.} \cite{Feller_et_al:E2SSU} that, in fact, the unitality condition is automatic, providing the missing ingredient to see that 2-Segal spaces and decomposition spaces are the same. 
+We will give an account of this result in \cref{sec decomp vs 2-segal}, following \cite{GKT1,Feller_et_al:E2SSU}.
+
+% Write about the path space criterion
+
 \subsection{Ways to read this paper}\label{sec ways to read}
 In following the original sources \cite{GKT1,GKT2,GKT3}, we have elected mostly to phrase everything within the $(\infty,1)$-category of simplicial \emph{spaces}.
 But knowing about $\infty$-categories and homotopy limits and such is not a prerequisite for this paper.
-With one exception (\cref{ex forests}), readers may safely replace ``spaces'' with ``sets'' and replace any homotopy pullbacks/limits with ordinary pullbacks/limits.
+% With one exception (\cref{ex forests}), 
+Readers may safely replace ``spaces'' with ``sets'' and replace any homotopy pullbacks/limits with ordinary pullbacks/limits.
 \begin{enumerate}[left=0pt]
 \item Work only in the category $\sset \coloneqq \fun(\Delta^\op, \set)$ of simplicial sets. This requires basic familiarity with simplicial sets as combinatorial objects (but nothing of their homotopy theory), as well as basic notions from category theory (functors, pullbacks, etc.).
-\item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$ having pullbacks and a terminal object. 
+\item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$ having pullbacks and a terminal object.\footnote{Note that the assumption of existence of finite limits in \eqref{item gen cat} and \eqref{item gen inf cat} is only used to assert that certain fiber products exist, as in \cref{def Segal}.
+This assumption can be dropped, by instead asking that certain diagrams arising from simplicial objects \emph{are} limit diagrams.}
 Particular examples may not make sense in this generality.
+\label{item gen cat}
 \item Work in the $(\infty,1)$-category $\sspace \coloneqq \fun(\Delta^\op, \spaces)$ of space-valued presheaves on $\Delta$.
 Here $\spaces$ denotes the $(\infty,1)$-category of spaces (or $\infty$-groupoids).
 See \cite{GKT1} for details.
@@ -122,13 +153,19 @@ Note: strictly speaking, an object of $\sspace$ is really more like a pseudo-fun
 We will also write composite diagrams without fully specifying the shape categories.
 \item 
 One could also work with simplicial objects in an arbitrary $(\infty,1)$-category $C$ having finite limits.
+\label{item gen inf cat}
 \end{enumerate}
 We will altogether avoid discussing anything from the perspective of Quillen model categories.
-A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below.\phnote{Cite a few such sources.}
+A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below.
+% These include the model structure for 2-Segal spaces from \cite{DyckerhoffKapranov:HSS} and the quasi-2-Segal sets of Feller \cite{Feller:Q2SS}
+\phnote{Cite a few such sources.}
 
 \subsection*{Acknowledgements}
-\phnoteil{Organizers, BIRS, etc.}
-I'm also grateful to Matt Feller for discussion concerning edgewise subdivision (\cref{sec edgewise}).
+This paper originated from the author's talks at the workshop ``Higher Segal Spaces and their Applications to Algebraic K-Theory, Hall Algebras, and Combinatorics'' held at the Banff International Research Station (BIRS) in January 2024.
+The author thanks the workshop organizers (Julie Bergner, Joachim Kock, Maru Sarazola) for cultivating a vibrant and stimulating atmosphere and giving me the opportunity to speak, and BIRS for providing an ideal venue for the event.
+Thanks also to Mark Penney for his work (together with Julie Bergner) in organizing a predecessor workshop planned for 2020 at Casa Matemática Oaxaca, which was unfortunately cancelled due to the COVID-19 pandemic.
+The author is grateful to the other participants for their contributions and discussions.
+Special thanks go to Matt Feller for discussion concerning edgewise subdivision (\cref{sec edgewise}).
 
 \section{The active-inert factorization system on the simplicial category}\label{sec act inert fact}
 
@@ -241,7 +278,7 @@ The map $\phi$ is given by
 \end{proof}
 \end{comment}
 
-\section{Decomposition spaces and 2-Segal spaces}
+\section{Decomposition spaces and 2-Segal spaces}\label{sec decomp vs 2-segal}
 
 With active-inert pushouts in hand, we are ready to define the following \cite[\S3]{GKT1}:
 
@@ -273,7 +310,10 @@ If working with simplicial sets rather than simplicial spaces, these will just b
 A simplicial set which is a decomposition space will be called a \emph{discrete decomposition space}.
 
 \begin{diversion}[Variations]
-\phnoteil{Write about other categories with active-inert factorization systems. \cite{Burkin:TACOSC,Berger:MCO,Contreras_et_al:FCPBS}}
+What happens if one replaces the active-inert factorization system on $\Delta$ in \cref{def decomp space} with a factorization system on some other indexing category?
+This question is broad and vague, but special cases have been considered in \cite[Remark 3.15]{Berger:MCO}, \cite[p.\ 635]{Burkin:TACOSC}, \cite{Contreras_et_al:FCPBS}, and \cite{Godicke:IC2SS}.\footnote{It does not seem to be the case that cyclic 2-Segal objects (see \cite{DyckerhoffKapranov:TSTC,BergnerStern:CSS}) are of this form, owing to the lack of a compatible orthogonal factorization systems on Connes' cyclic category $\Lambda$ \cite{Connes:CCFE}.
+Indeed, if the right class of a factorization system on $\Lambda$ contains $\delint$, then it contains the positive part of the generalized Reedy factorization system on $\Lambda$ (see \cite{BergerMoerdijk:OENRC}), while if the left class of a factorization system contains $\delact$, then it contains all of $\Lambda$.}
+% If $\Lambda$ had a factorization system whose right class contained $\delint$, then since all coface maps are isomorphic the right class would contain the positive category $\Lambda^+$ from \cite{}. }
 \end{diversion}
 
 If $C$ is a category, then the nerve of $C$ is a (discrete) decomposition space.
@@ -373,8 +413,7 @@ In a similar manner, the $\catpar$-enriched categories from the preceding exerci
 
 \section{2-Segal spaces are decomposition spaces}\label{sec 2-Segl decomp}
 
-In this section we discuss the following fundamental result. % from \cite{Feller_et_al:E2SSU}.
-\phnote{Mention \cite{Feller_et_al:E2SSU} and that it was known much earlier that decomposition spaces and unital 2-Segal spaces were the same.}
+In this section we discuss the following fundamental result; as mentioned in the introduction, it was known early on that decomposition spaces were the same thing as unital 2-Segal spaces, and later on it was discovered that the unitality condition is automatic \cite{Feller_et_al:E2SSU}.
 
 \begin{theorem}\label{thm unitality} 
 A simplicial space $X$ is a decomposition space if and only if it is both upper and lower 2-Segal.
@@ -485,7 +524,7 @@ The right square is a pullback since $X$ is upper 2-Segal, and the outer square 
 Hence the left square is a pullback.
 \end{proof}
 
-Unfortunately, the proof of lemma does not cover the $n=0$ case.
+Unfortunately, the proof of the lemma does not cover the $n=0$ case.
 For that, we need our second basic tool.
 
 \begin{retrstab}
@@ -602,8 +641,9 @@ As in \cite[Proposition 2.3.2]{DyckerhoffKapranov:HSS}, one only needs to requir
 
 \section{Segal spaces are decomposition spaces}\label{sec segal spaces}
 
-% In \cite{Stern:BIRS}, we saw that the nerve of a category is a 2-Segal set (under the characterization from \cref{exc 2-Segal defs}).  
-% We will use the pasting law to establish that each Segal space is also a 2-Segal space.
+In \cite{Stern:BIRS}, we saw that the nerve of a category is a 2-Segal set (under the characterization from \cref{exc 2-Segal defs}).
+This is true more generally: Segal spaces \cite{Rezk:MHTHT,Segal:CCT} are always decomposition spaces.
+In this brief section we use the pasting law to establish this fact, and to characterize the Segal spaces among decomposition spaces.
 
 \begin{definition}\label{def Segal}
 A simplicial space $X$ is a \emph{Segal space} if the following equivalent conditions hold:
