@@ -118,12 +118,14 @@ But everything holds equally well for simplicial \emph{sets}, and we encourage r
 
 Decomposition spaces were introduced by Imma G\'alvez-Carillo, Joachim Kock, and Andrew Tonks in a long preprint in 2014, which now comprises six papers \cite{GKT1,GKT2,GKT3,GKT:DSC,GKT:DSRS,GKT:HLA}.
 Their goals were to develop a very general framework for incidence algebras and Möbius inversion that could unify and extend various examples arising in algebraic combinatorics.
+Further developments along these lines came later, including consideration of antipodes \cite{CarlierKock:AMDS}, incorporation of Schmitt's hereditary species into the picture \cite{Carlier:HSMDS}, investigation of the universality of Lawvere's Hopf algebra of M\"obius intervals \cite{Forero:GCKTCLDDS}, and the introduction of a new type of species governing other known Hopf algebras \cite{CebrianForero:DHSDS}.
+See the introduction of \cite{GKT:DSC}, in this volume, for a more thorough account of these and other developments.
 
-% Further developments along these lines.
-% \cite{Carlier:HSMDS} and \cite{Carlier:IBMIRF} and \cite{CarlierKock:AMDS} and \cite{CebrianForero:DHSDS} and \cite{Forero:GCKTCLDDS}
+The aim of this paper is to give a gentle introduction to decomposition spaces, similar to Stern's introduction to 2-Segal spaces from this volume \cite{Stern:BIRS}.
+The theory of decomposition spaces begs us to reduce as much as possible to a calculus of pullback squares, and we try to follow this as much as possible whenever we can.
+All told, the prerequisites for this work are mild, and similar to \cite{Stern:BIRS}: some elementary category theory, and some comfortability with simplicial sets (but see \cref{sec ways to read}).
 
-
-Decomposition spaces are the same thing as the 2-Segal spaces of Dyckerhoff and Kapranov \cite{DyckerhoffKapranov:HSS}. 
+Decomposition spaces are equivalent to the 2-Segal spaces of Dyckerhoff and Kapranov \cite{DyckerhoffKapranov:HSS}. 
 This was first observed for \emph{unital} 2-Segal spaces, as described in \cite[p.~959]{GKT1}:
 
 \begin{quote}
@@ -132,7 +134,16 @@ The coincidence of the notions was noticed by Mathieu Anel because two of the ba
 Later on it was realized by Feller \emph{et~al.} \cite{Feller_et_al:E2SSU} that, in fact, the unitality condition is automatic, providing the missing ingredient to see that 2-Segal spaces and decomposition spaces are the same. 
 We will give an account of this result in \cref{sec decomp vs 2-segal}, following \cite{GKT1,Feller_et_al:E2SSU}.
 
-% Write about the path space criterion
+The next three sections (\S\ref{sec segal spaces}, \S\ref{sec path space}, \S\ref{sec edgewise}) are all about relationships between decomposition spaces and Segal spaces.
+The first of these is simple: decomposition spaces are meant to be a generalization of Segal spaces, and we establish this is indeed the case.
+Additionally, Segal spaces are characterized among the decomposition spaces by means of a single square.
+In \cref{sec path space} we turn to the \emph{path space criterion}, which says that a simplicial space is a decomposition space if and only if both of its d\'ecalages/path spaces are Segal spaces.
+Finally, in \cref{sec edgewise} we prove the closely related edgewise subdivision criterion, which says that $X$ is a decomposition space if and only if $\sd X$ is a Segal space.
+
+The last section of the paper describes a source of examples of decomposition spaces, namely the simplicial sets associated to outer face complexes.
+
+There is fundamental material about decomposition spaces that is not covered in depth here, but can be found in the original sources and in other papers in this volume.
+This includes notions of functoriality via suitable classes of maps, which are discussed in \cite{CooperYoung:BIRS,GKT:DSC}.
 
 \subsection{Ways to read this paper}\label{sec ways to read}
 In following the original sources \cite{GKT1,GKT2,GKT3}, we have elected mostly to phrase everything within the $(\infty,1)$-category of simplicial \emph{spaces}.
@@ -141,8 +152,8 @@ But knowing about $\infty$-categories and homotopy limits and such is not a prer
 Readers may safely replace ``spaces'' with ``sets'' and replace any homotopy pullbacks/limits with ordinary pullbacks/limits.
 \begin{enumerate}[left=0pt]
 \item Work only in the category $\sset \coloneqq \fun(\Delta^\op, \set)$ of simplicial sets. This requires basic familiarity with simplicial sets as combinatorial objects (but nothing of their homotopy theory), as well as basic notions from category theory (functors, pullbacks, etc.).
-\item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$ having pullbacks and a terminal object.\footnote{Note that the assumption of existence of finite limits in \eqref{item gen cat} and \eqref{item gen inf cat} is only used to assert that certain fiber products exist, as in \cref{def Segal}.
-This assumption can be dropped, by instead asking that certain diagrams arising from simplicial objects \emph{are} limit diagrams.}
+\item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$.\footnote{Typically, one would require that $C$ appearing in \eqref{item gen cat} and \eqref{item gen inf cat} have finite limits.
+This assumption can be dropped for what we do in this paper, by instead asking that certain diagrams arising from simplicial objects \emph{are} limit diagrams.}
 Particular examples may not make sense in this generality.
 \label{item gen cat}
 \item Work in the $(\infty,1)$-category $\sspace \coloneqq \fun(\Delta^\op, \spaces)$ of space-valued presheaves on $\Delta$.
@@ -152,20 +163,17 @@ We emphasize that any pullbacks or limits that appear are necessarily \emph{homo
 Note: strictly speaking, an object of $\sspace$ is really more like a pseudo-functor $\Delta^\op \to \spaces$, but we will still write simplicial identities as equalities as opposed to equivalences.
 We will also write composite diagrams without fully specifying the shape categories.
 \item 
-One could also work with simplicial objects in an arbitrary $(\infty,1)$-category $C$ having finite limits.
+One could also work with simplicial objects in an arbitrary $(\infty,1)$-category $C$.
 \label{item gen inf cat}
 \end{enumerate}
 We will altogether avoid discussing anything from the perspective of Quillen model categories.
-A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below.
-% These include the model structure for 2-Segal spaces from \cite{DyckerhoffKapranov:HSS} and the quasi-2-Segal sets of Feller \cite{Feller:Q2SS}
-\phnote{Cite a few such sources.}
+A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below (see, for instance, \cite{DyckerhoffKapranov:HSS,Feller:Q2SS,BOORS:ESC}).
 
 \subsection*{Acknowledgements}
 This paper originated from the author's talks at the workshop ``Higher Segal Spaces and their Applications to Algebraic K-Theory, Hall Algebras, and Combinatorics'' held at the Banff International Research Station (BIRS) in January 2024.
 The author thanks the workshop organizers (Julie Bergner, Joachim Kock, Maru Sarazola) for cultivating a vibrant and stimulating atmosphere and giving me the opportunity to speak, and BIRS for providing an ideal venue for the event.
-Thanks also to Mark Penney for his work (together with Julie Bergner) in organizing a predecessor workshop planned for 2020 at Casa Matemática Oaxaca, which was unfortunately cancelled due to the COVID-19 pandemic.
 The author is grateful to the other participants for their contributions and discussions.
-Special thanks go to Matt Feller for discussion concerning edgewise subdivision (\cref{sec edgewise}).
+Special thanks go to Matt Feller, Joachim Kock, Justin Lynd, Felix Naß, and Walker Stern.
 
 \section{The active-inert factorization system on the simplicial category}\label{sec act inert fact}
 
@@ -410,6 +418,24 @@ Each partial monoid may be regarded as a monoid with a zero element, by adjoinin
 Likewise, for any monoid with a zero element different from $1$, we obtain a partial monoid by discarding $0$.
 In a similar manner, the $\catpar$-enriched categories from the preceding exercise correspond to categories with zero morphisms. % \cite[\S1.7]{Pareigis:CF}.
 \end{remark}
+
+We mention, in passing, a class of maps which plays an important role in the theory of decomposition spaces.
+These maps will not make a significant appearance in this paper, but will reappear in other papers in this volume.
+
+\begin{definition}[Culf maps]\label{def culf}
+A map $f \colon X \to Y$ between simplicial spaces is \emph{culf} if it is cartesian on active maps.
+Concretely, this means that following squares are pullbacks, for $0 < i < n$ and $0\leq j \leq n$.
+\[ \begin{tikzcd}
+X_n \rar{d_i} \dar[swap]{f} \ar[dr, phantom, "\lrcorner" very near start]  & X_{n-1} \dar{f} 
+& &
+X_n \rar{s_j} \dar[swap]{f} \ar[dr, phantom, "\lrcorner" very near start]  & X_{n+1} \dar{f} 
+\\
+Y_n  \rar[swap]{d_i} & Y_{n-1} 
+& &
+Y_n  \rar[swap]{s_j} & Y_{n+1}
+\end{tikzcd}
+\]
+\end{definition}
 
 \section{2-Segal spaces are decomposition spaces}\label{sec 2-Segl decomp}
 
@@ -766,7 +792,9 @@ Using \cref{thm unitality}, we conclude the original form of the path space crit
 
 \begin{corollary}\label{cor path space}
 A simplicial space $X$ is a decomposition space if and only if both $\udec X$ and $\ldec X$ are Segal. \qed
-\end{corollary}\phnote{I haven't mentioned that $\udec X \to X$ and $\ldec X \to X$ turn out to be culf.}
+\end{corollary}
+
+When $X$ is a decomposition space, it turns out that the maps $d_\top \colon \udec X \to X$ and $d_\bot \colon \ldec X \to X$ are culf (in the sense of \cref{def culf}); see \cite[Theorem~4.10]{GKT1}.
 
 \section{The edgewise subdivision criterion}\label{sec edgewise}
 
@@ -923,11 +951,11 @@ We have inclusions of simplicial sets $\ldec X \hookrightarrow \sd X$ and $(\ude
 Identifying each of these subcategories with its image, the category $\sd X$ admits two (strict) factorization systems $(\ldec X, (\udec X)^\op)$ and $((\udec X)^\op, \ldec X)$; see \cite{Hackney:OC2SS} for one explanation.% (including for simplicial spaces).
 \end{remark}
 
-% Lastly, we conclude with the following theorem from \cite{KockSpivak:DSST}
+There is also an interesting story about culf maps (\cref{def culf}) and edgewise subdivision, which gives the following theorem from \cite{KockSpivak:DSST} (see \cite{HackneyKock:CMES} for a generalization). 
 
-% \begin{theorem}[Kock \& Spivak]
-% If $X$ is a discrete decomposition space, then there is an equivalence of categories between the category of culf maps over $X$ and the category of presheaves on $\sd X$.
-% \end{theorem}
+\begin{theorem}[Kock \& Spivak]\label{thm kock spivak}
+If $X$ is a discrete decomposition space, then there is an equivalence of categories between the category of culf maps over $X$ and the category of presheaves on $\sd X$.
+\end{theorem}
 
 \section{Free decomposition spaces}\label{sec free}
 
@@ -1069,7 +1097,7 @@ The category of outer face complexes is equivalent to the category of culf maps 
 \end{theorem}
 
 % This is the main theorem of \cite{HackneyKock:FDS}.
-While we have not explained what a culf map is (a natural transformation whose restriction to $\delact$ is cartesian), this important concept will play a key role in other papers in this volume \cite{CooperYoung:BIRS,GKT:DSC}.
+% While we have not explained what a culf map is (a natural transformation whose restriction to $\delact$ is cartesian), this important concept will play a key role in other papers in this volume \cite{CooperYoung:BIRS,GKT:DSC}.
 \begin{comment}
 Let us just observe that the situation is \emph{somewhat} reasonable: each outer face complex admits a unique map to the terminal object, and we saw that $j_!$ takes this terminal object to $B\mathbb{N}$.
 \begin{exercise} 
