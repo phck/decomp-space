@@ -132,7 +132,7 @@ This was first observed for \emph{unital} 2-Segal spaces, as described in \cite[
 The coincidence of the notions was noticed by Mathieu Anel because two of the basic results are the same: specifically, the characterisation in terms of decalage and Segal spaces \dots{} and the result that the Waldhausen $S_\bullet$-construction of a stable $\infty$-category is a decomposition space \dots{}
 \end{quote}
 Later on it was realized by Feller \emph{et~al.} \cite{Feller_et_al:E2SSU} that, in fact, the unitality condition is automatic, providing the missing ingredient to see that 2-Segal spaces and decomposition spaces are the same. 
-We will give an account of this result in \cref{sec decomp vs 2-segal}, following \cite{GKT1,Feller_et_al:E2SSU}.
+We will give an account of this result in \cref{sec 2-Segl decomp}, following \cite{GKT1,Feller_et_al:E2SSU}.
 
 The next three sections (\S\ref{sec segal spaces}, \S\ref{sec path space}, \S\ref{sec edgewise}) are all about relationships between decomposition spaces and Segal spaces.
 The first of these is simple: decomposition spaces are meant to be a generalization of Segal spaces, and we establish this is indeed the case.
@@ -148,11 +148,12 @@ This includes notions of functoriality via suitable classes of maps, which are d
 \subsection{Ways to read this paper}\label{sec ways to read}
 In following the original sources \cite{GKT1,GKT2,GKT3}, we have elected mostly to phrase everything within the $(\infty,1)$-category of simplicial \emph{spaces}.
 But knowing about $\infty$-categories and homotopy limits and such is not a prerequisite for this paper.
-% With one exception (\cref{ex forests}), 
 Readers may safely replace ``spaces'' with ``sets'' and replace any homotopy pullbacks/limits with ordinary pullbacks/limits.
+In more detail, any of the following are valid ways to read this paper:
 \begin{enumerate}[left=0pt]
 \item Work only in the category $\sset \coloneqq \fun(\Delta^\op, \set)$ of simplicial sets. This requires basic familiarity with simplicial sets as combinatorial objects (but nothing of their homotopy theory), as well as basic notions from category theory (functors, pullbacks, etc.).
-\item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$.\footnote{Typically, one would require that $C$ appearing in \eqref{item gen cat} and \eqref{item gen inf cat} have finite limits.
+\label{item sset}
+\item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$.\footnote{Typically, one would require that $C$ appearing in \eqref{item gen cat} and \eqref{item gen inf cat} has finite limits.
 This assumption can be dropped for what we do in this paper, by instead asking that certain diagrams arising from simplicial objects \emph{are} limit diagrams.}
 Particular examples may not make sense in this generality.
 \label{item gen cat}
@@ -170,9 +171,9 @@ We will altogether avoid discussing anything from the perspective of Quillen mod
 A number of sources, especially on the 2-Segal side of things, give model categorical accounts of some of what appears below (see, for instance, \cite{DyckerhoffKapranov:HSS,Feller:Q2SS,BOORS:ESC}).
 
 \subsection*{Acknowledgements}
-This paper originated from the author's talks at the workshop ``Higher Segal Spaces and their Applications to Algebraic K-Theory, Hall Algebras, and Combinatorics'' held at the Banff International Research Station (BIRS) in January 2024.
-The author thanks the workshop organizers (Julie Bergner, Joachim Kock, Maru Sarazola) for cultivating a vibrant and stimulating atmosphere and giving me the opportunity to speak, and BIRS for providing an ideal venue for the event.
-The author is grateful to the other participants for their contributions and discussions.
+This paper originated from my talks at the workshop ``Higher Segal Spaces and their Applications to Algebraic K-Theory, Hall Algebras, and Combinatorics'' held at the Banff International Research Station (BIRS) in January 2024.
+I thank the workshop organizers (Julie Bergner, Joachim Kock, Maru Sarazola) for cultivating a vibrant and stimulating atmosphere and giving me the opportunity to speak, and BIRS for providing an ideal venue for the event.
+I am grateful to the other participants for their contributions and discussions.
 Special thanks go to Matt Feller, Joachim Kock, Justin Lynd, Felix Naß, and Walker Stern.
 
 \section{The active-inert factorization system on the simplicial category}\label{sec act inert fact}
@@ -212,14 +213,12 @@ d_i s_j &= \begin{cases}
 \end{align*}
 Vertical reflection of the picture \eqref{diag simplicial object} yields the following contrivance, which will allow us to infer some statements by duality.
 
-\begin{definition}
 If $X$ is a simplicial object, then its \emph{opposite} $X^\op$ has $(X^\op)_n = X_n$ together with the following face and degeneracy operators: \begin{align*} \big( d_k^{\op} \colon X^\op_n \to X^\op_{n-1} \big) &= \big( d_{n-k} \colon X_n \to X_{n-1} \big)
 \\
 \big( s_k^{\op} \colon X^\op_n \to X^\op_{n+1} \big) &= \big( s_{n-k} \colon X_n \to X_{n+1} \big).
 \end{align*}
 More formally, there is an endofunctor $\Delta \to \Delta$ which sends $f \colon [n] \to [m]$ to $g \colon [n] \to [m]$ with $g(i) = m-f(n-i)$.
 The functor $X^\op \colon \Delta^\op \to \spaces$ is given by precomposing $X$ with this endofunctor.
-\end{definition}
 
 We say that a morphism $\alpha \colon [n] \to [m]$ in $\Delta$ is \emph{active} if it is endpoint preserving, that is, if $\alpha(0) = 0$ and $\alpha(n) = m$.
 Active maps will denoted by arrows with right arrow to bar %\footnote{\texttt{\&rarrb;} in HTML, but unfortunately not present in standard \LaTeX{} packages.}
@@ -294,7 +293,7 @@ With active-inert pushouts in hand, we are ready to define the following \cite[\
 A simplicial space $X$ is a \emph{decomposition space} if it sends every active-inert pushout square to a pullback square.
 \end{definition}
 
-In more detail, given a pushout square as to the left (as in \eqref{diag ai pushout} of \cref{lem ai pushout}), the associated square to the right is a pullback square of spaces.
+In more detail, given a pushout square on the left below (as in \eqref{diag ai pushout} of \cref{lem ai pushout}), the associated square on the right is a pullback square of spaces.
 \[
 \begin{tikzcd}
 {[n]} \rar[-act, "\alpha"] \dar[tail, "\iota"'] \ar[dr, phantom, "\ulcorner" very near end] & {[m]} \dar[tail, "\theta"] 
@@ -312,7 +311,7 @@ X_m \rar[swap]{\alpha^*} & X_n
 
 \begin{convention}\label{conv pullback}
 In this definition, and in what follows, `pullback' means `pullback in the $(\infty,1)$-category of spaces' or `homotopy pullback.'
-If working with simplicial sets rather than simplicial spaces, these will just be ordinary pullbacks.
+For a reader working with simplicial sets rather than simplicial spaces, these will just be ordinary pullbacks.\footnote{When working under option \eqref{item gen cat} from \cref{sec ways to read}, one will use ordinary pullbacks in $C$, and when working under option \eqref{item gen inf cat} one will use $(\infty,1)$-categorical pullbacks.}
 \end{convention}
 
 A simplicial set which is a decomposition space will be called a \emph{discrete decomposition space}.
@@ -327,7 +326,8 @@ Indeed, if the right class of a factorization system on $\Lambda$ contains $\del
 If $C$ is a category, then the nerve of $C$ is a (discrete) decomposition space.
 We return to this example in \cref{sec segal spaces}.
 A rich source of combinatorial examples are the free decomposition spaces, which we discuss in \cref{sec free}.
-We will give additional examples in a moment, but first we give an equivalent characterization (to be discussed in the next section), in the form appearing in \cite{Feller_et_al:E2SSU}.
+We will give additional examples in a moment, but first we give an equivalent characterization (to be discussed in the next section).
+The following appears in \cite{Feller_et_al:E2SSU}.
 
 \begin{definition}\label{def 2-segal}
 A simplicial space $X$ is said to be \emph{upper 2-Segal} (resp.\ \emph{lower 2-Segal}) if the square below left (resp.\ below right) is a pullback for all $0 < i < n$.
@@ -417,6 +417,7 @@ Show that if the set $C(x,x)$ is inhabited for every object $x$ of $C$, then $C$
 Each partial monoid may be regarded as a monoid with a zero element, by adjoining a new absorbing element $0$ to $M$ and declaring that all undefined multiplications take $0$ as their value.
 Likewise, for any monoid with a zero element different from $1$, we obtain a partial monoid by discarding $0$.
 In a similar manner, the $\catpar$-enriched categories from the preceding exercise correspond to categories with zero morphisms. % \cite[\S1.7]{Pareigis:CF}.
+(Also note that $\catpar$-enriched categories are a special case of the multivalued categories of \cite[\S3.3]{DyckerhoffKapranov:HSS}.)
 \end{remark}
 
 We mention, in passing, a class of maps which plays an important role in the theory of decomposition spaces.
@@ -556,7 +557,7 @@ For that, we need our second basic tool.
 \begin{retrstab}
 Retracts of pullbacks are pullbacks.
 \end{retrstab}
-Being a pullback is a property of an object of $\fun(\Delta^1 \times \Delta^1, C)$, the category of commutative squares in $C$, and this property is stable under retracts.
+Being a pullback is a property of an object of $\fun(\Delta^1 \times \Delta^1, C)$, the category of commutative squares in $C$, and this property is stable under retracts.\phnote{May be confusing if not working in $\infty$-categories.}
 See \cite[Appendix A]{Feller_et_al:E2SSU} for homotopy pullbacks in model categories; for quasi-categories use the duals of \cite[Lemma 5.1.6.3]{Lurie:HTT} or \cite[\href{https://kerodon.net/tag/05E6}{Tag 05E6}]{kerodon}.
 The following is proved in \cite{Feller_et_al:E2SSU}.
 
@@ -627,7 +628,7 @@ X_n  \rar[swap]{s_i} & X_{n+1}
 \end{tikzcd}
 \]
 is a pullback: apply \cref{lem higher degen} and \cref{lem bot degen} to $X^\op$.
-To prove \cref{thm unitality}, one can now follow \cite[3.4]{GKT1}, or reason about this directly.
+To prove \cref{thm unitality}, one can now follow \cite[3.4]{GKT1}, or reason about the situation directly as follows:
 
 \begin{proof}[Proof sketch for \cref{thm unitality}]
 First consider active-inert pushout squares
@@ -714,11 +715,11 @@ X_{n-1} \rar[swap]{d_\top} & X_{n-2}
 \end{tikzcd} \]
 The outer rectangle is equal to the outer rectangle of the following diagram.
 \[ \begin{tikzcd}
-X_{n+1} \rar{d_{n+1}} \dar[swap]{d_\bot} \ar[dr, phantom, "\lrcorner" very near start] &
-X_n \rar{d_n} \dar[swap]{d_\bot} \ar[dr, phantom, "\lrcorner" very near start] & X_{n-1} \dar{d_\bot}
+X_{n+1} \rar{d_\top} \dar[swap]{d_\bot} \ar[dr, phantom, "\lrcorner" very near start] &
+X_n \rar{d_\top} \dar[swap]{d_\bot} \ar[dr, phantom, "\lrcorner" very near start] & X_{n-1} \dar{d_\bot}
 \\
-X_n \rar[swap]{d_n} & 
-X_{n-1} \rar[swap]{d_{n-1}} & X_{n-2}
+X_n \rar[swap]{d_\top} & 
+X_{n-1} \rar[swap]{d_\top} & X_{n-2}
 \end{tikzcd} \]
 Since both squares are pullbacks, so is the outer rectangle.
 This implies that the left square in first diagram is a pullback, as desired.
@@ -748,7 +749,8 @@ A version for decomposition spaces appeared as \cite[Theorem 4.10]{GKT1}.
 A simplicial space $X$ is upper 2-Segal if and only if its upper d\'ecalage $\udec X$ is Segal.
 \end{theorem}
 
-The upper d\'ecalage $\udec X$ is given by precomposition of $X \colon \Delta^\op \to \spaces$ with the endofunctor $\Delta \to \Delta$ that sends $[n]$ to $[n]\star [0] \cong [n+1]$.
+The upper d\'ecalage $\udec X$ is given by precomposition of $X \colon \Delta^\op \to \spaces$ with the endofunctor $\Delta \to \Delta$ that sends $[n]$ to $[n]\star [0] \cong [n+1]$.\footnote{
+Here $\star$ denotes the \emph{join} of categories \cite[\href{https://kerodon.net/tag/0160}{Tag 0160}]{kerodon}, where the set of objects of $C \star D$ is the disjoint union of the sets of objects of $C$ and $D$, the categories $C$ and $D$ are full subcategories of $C\star D$, and, for $c\in C$ and $d\in D$, there are no morphisms $d\to c$ and exactly one morphism $c\to d$.}
 This endofunctor takes $f\colon [n] \to [m]$ to $g\colon [n+1] \to [m+1]$ satisfying $g(n+1) = m+1$ and $g(k) = f(k)$ for $0\leq k \leq n$.
 
 More explicitly, we have $(\udec X)_n = X_{n+1}$ and the face and degeneracy operators are given for $0 \leq k \leq n$ by
@@ -805,8 +807,7 @@ This proof relies on the path space criterion (\cref{cor path space}), which is 
 A simplicial space $X$ is a decomposition space if and only if its edgewise subdivision $\sd X$ is Segal.
 \end{theorem}
 
-As with the d\'ecalage functors, the edgewise subdivision is the result of precomposition with an endofunctor of $\Delta$, namely the one which sends $[n]$ to $[n]^\op \star [n] \cong [2n+1]$.\footnote{
-Here $\star$ denotes the \emph{join} of categories \cite[\href{https://kerodon.net/tag/0160}{Tag 0160}]{kerodon}, where the set of objects of $C \star D$ is the disjoint union of the sets of objects of $C$ and $D$, the categories $C$ and $D$ are full subcategories of $C\star D$, and, for $c\in C$ and $d\in D$, there are no morphisms $d\to c$ and exactly one morphism $c\to d$.}
+As with the d\'ecalage functors, the edgewise subdivision is the result of precomposition with an endofunctor of $\Delta$, namely the one which sends $[n]$ to $[n]^\op \star [n] \cong [2n+1]$.
 A map $f \colon [n] \to [m]$ is sent to $g \colon [2n+1] \to [2m+1]$ with
 \[
 g(t) = \begin{cases}
@@ -1095,6 +1096,19 @@ We leave many other interesting examples to \cite{HackneyKock:FDS}, and conclude
 \begin{theorem}
 The category of outer face complexes is equivalent to the category of culf maps over $B\mathbb{N}$.
 \end{theorem}
+
+Though we will not prove this, let us give a brief indication of why one might expect the $j_!$-construction to be reversible.
+Having any map $X \to B\mathbb{N}$ allows us to write $X_1 \cong \sum A_m$, by letting $A_m\subseteq X_1$ be the fiber at $m$ of $X_1 \to B\mathbb{N}_1 = \mathbb{N}$.
+Similarly we can write $X_k \cong \sum A_{\ell_1, \dots, \ell_k}$ by taking fibers of $X_k \to B\mathbb{N}_k = \mathbb{N}^k$.
+If our original map is culf (\cref{def culf}), then the map $A_{\ell_1, \dots, \ell_k} \to A_m$ (with $m = \sum \ell_i$) is an isomorphism.
+It is thus plausible that if we can endow the sequence $A_0, A_1, A_2, \dots$ with the structure of an outer face complex, then we may be able to recover $X$ using formula for $j_!A$.
+Working backwards from the formulas for the face maps of $j_!A$, we realize there is only one possibility for the outer face complex structure on $A$.
+Specifically, $d_\bot \colon A_{m+1} \to A_m$ must come from the top row of the following diagram
+\[ \begin{tikzcd}
+A_{m+1} \dar[hook] & A_{1,m} \dar[hook] \lar[swap]{\cong} \rar & A_m \dar[hook] \\
+X_1 & X_2 \rar[swap]{d_0} \lar{d_1} & X_1
+\end{tikzcd} \]
+and similarly for $d_\top$.
 
 % This is the main theorem of \cite{HackneyKock:FDS}.
 % While we have not explained what a culf map is (a natural transformation whose restriction to $\delact$ is cartesian), this important concept will play a key role in other papers in this volume \cite{CooperYoung:BIRS,GKT:DSC}.
