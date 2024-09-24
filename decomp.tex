@@ -100,30 +100,16 @@ Formal prerequisites are minimal -- readers should have a working knowledge of s
 
 \maketitle
 
-\begin{comment}
-We assume some familiarity with simplicial techniques, as used for instance in \cite[Chapter 8]{Weibel:IHA}. And with categories.
-
-Higher Segal connections (pasting law etc.)??
-\end{comment}
-
-
-\begin{comment}
-\begin{convention}[Spaces versus sets]\label{conv spaces sets}
-In following the original sources, we will mostly speak of \emph{simplicial spaces}, by which we mean objects in the $(\infty,1)$-category $\sspace \coloneqq \fun(\Delta^\op, \spaces)$ of space-valued presheaves on $\Delta$.
-But everything holds equally well for simplicial \emph{sets}, and we encourage readers to instead work with the 1-category $\sset \coloneqq \fun(\Delta^\op, \set)$.
-\end{convention}
-\end{comment}
-
 \section{Introduction}
 
-Decomposition spaces were introduced by Imma G\'alvez-Carillo, Joachim Kock, and Andrew Tonks in a long preprint in 2014, which now comprises six papers \cite{GKT1,GKT2,GKT3,GKT:DSC,GKT:DSRS,GKT:HLA}.
+Decomposition spaces were introduced by Imma G\'alvez-Carrillo, Joachim Kock, and Andrew Tonks in a long preprint in 2014, which now comprises six papers \cite{GKT1,GKT2,GKT3,GKT:DSC,GKT:DSRS,GKT:HLA}.
 Their goals were to develop a very general framework for incidence algebras and Möbius inversion that could unify and extend various examples arising in algebraic combinatorics.
 Further developments along these lines came later, including consideration of antipodes \cite{CarlierKock:AMDS}, incorporation of Schmitt's hereditary species into the picture \cite{Carlier:HSMDS}, investigation of the universality of Lawvere's Hopf algebra of M\"obius intervals \cite{Forero:GCKTCLDDS}, and the introduction of a new type of species governing other known Hopf algebras \cite{CebrianForero:DHSDS}.
 See the introduction of \cite{GKT:DSC}, in this volume, for a more thorough account of these and other developments.
 
 The aim of this paper is to give a gentle introduction to decomposition spaces, similar to Stern's introduction to 2-Segal spaces from this volume \cite{Stern:BIRS}.
-The theory of decomposition spaces begs us to reduce as much as possible to a calculus of pullback squares, and we try to follow this as much as possible whenever we can.
-All told, the prerequisites for this work are mild, and similar to \cite{Stern:BIRS}: some elementary category theory, and some comfortability with simplicial sets (but see \cref{sec ways to read}).
+The theory of decomposition spaces encourages us to reduce as much as possible to a calculus of pullback squares, and we try to follow this principle whenever feasible.
+All told, the prerequisites for this work are mild, and similar to \cite{Stern:BIRS}: some elementary category theory, and some comfort with simplicial sets (but see \cref{sec ways to read}).
 
 Decomposition spaces are equivalent to the 2-Segal spaces of Dyckerhoff and Kapranov \cite{DyckerhoffKapranov:HSS}. 
 This was first observed for \emph{unital} 2-Segal spaces, as described in \cite[p.~959]{GKT1}:
@@ -132,26 +118,26 @@ This was first observed for \emph{unital} 2-Segal spaces, as described in \cite[
 The coincidence of the notions was noticed by Mathieu Anel because two of the basic results are the same: specifically, the characterisation in terms of decalage and Segal spaces \dots{} and the result that the Waldhausen $S_\bullet$-construction of a stable $\infty$-category is a decomposition space \dots{}
 \end{quote}
 Later on it was realized by Feller \emph{et~al.} \cite{Feller_et_al:E2SSU} that, in fact, the unitality condition is automatic, providing the missing ingredient to see that 2-Segal spaces and decomposition spaces are the same. 
-We will give an account of this result in \cref{sec 2-Segl decomp}, following \cite{GKT1,Feller_et_al:E2SSU}.
+We will give an account of the equivalence in \cref{sec 2-Segl decomp}, following \cite{GKT1,Feller_et_al:E2SSU}.
 
 The next three sections (\S\ref{sec segal spaces}, \S\ref{sec path space}, \S\ref{sec edgewise}) are all about relationships between decomposition spaces and Segal spaces.
-The first of these is simple: decomposition spaces are meant to be a generalization of Segal spaces, and we establish this is indeed the case.
-Additionally, Segal spaces are characterized among the decomposition spaces by means of a single square.
+The first of these is simple: decomposition spaces are meant to be a generalization of Segal spaces.
+We establish that each Segal space is indeed a decomposition space, and that Segal spaces are characterized among the decomposition spaces by checking whether a single square is a pullback.
 In \cref{sec path space} we turn to the \emph{path space criterion}, which says that a simplicial space is a decomposition space if and only if both of its d\'ecalages/path spaces are Segal spaces.
 Finally, in \cref{sec edgewise} we prove the closely related edgewise subdivision criterion, which says that $X$ is a decomposition space if and only if $\sd X$ is a Segal space.
 
 The last section of the paper describes a source of examples of decomposition spaces, namely the simplicial sets associated to outer face complexes.
 
 There is fundamental material about decomposition spaces that is not covered in depth here, but can be found in the original sources and in other papers in this volume.
-This includes notions of functoriality via suitable classes of maps, which are discussed in \cite{CooperYoung:BIRS,GKT:DSC}.
 
 \subsection{Ways to read this paper}\label{sec ways to read}
 In following the original sources \cite{GKT1,GKT2,GKT3}, we have elected mostly to phrase everything within the $(\infty,1)$-category of simplicial \emph{spaces}.
-But knowing about $\infty$-categories and homotopy limits and such is not a prerequisite for this paper.
+But knowing about $(\infty,1)$-categories and homotopy limits and such is not a prerequisite for this paper.
 Readers may safely replace ``spaces'' with ``sets'' and replace any homotopy pullbacks/limits with ordinary pullbacks/limits.
 In more detail, any of the following are valid ways to read this paper:
 \begin{enumerate}[left=0pt]
-\item Work only in the category $\sset \coloneqq \fun(\Delta^\op, \set)$ of simplicial sets. This requires basic familiarity with simplicial sets as combinatorial objects (but nothing of their homotopy theory), as well as basic notions from category theory (functors, pullbacks, etc.).
+\item Focus solely on the category $\sset \coloneqq \fun(\Delta^\op, \set)$ of simplicial sets. 
+This approach requires basic familiarity with simplicial sets as combinatorial objects (but nothing of their homotopy theory), as well as basic notions from category theory (functors, pullbacks, etc.).
 \label{item sset}
 \item All statements before \cref{sec free} also hold, using the same arguments, for simplicial objects in a 1-category $C$.\footnote{Typically, one would require that $C$ appearing in \eqref{item gen cat} and \eqref{item gen inf cat} has finite limits.
 This assumption can be dropped for what we do in this paper, by instead asking that certain diagrams arising from simplicial objects \emph{are} limit diagrams.}
@@ -161,8 +147,6 @@ Particular examples may not make sense in this generality.
 Here $\spaces$ denotes the $(\infty,1)$-category of spaces (or $\infty$-groupoids).
 See \cite{GKT1} for details.
 We emphasize that any pullbacks or limits that appear are necessarily \emph{homotopy} pullbacks or limits (see \cref{conv pullback}).
-Note: strictly speaking, an object of $\sspace$ is really more like a pseudo-functor $\Delta^\op \to \spaces$, but we will still write simplicial identities as equalities as opposed to equivalences.
-We will also write composite diagrams without fully specifying the shape categories.
 \item 
 One could also work with simplicial objects in an arbitrary $(\infty,1)$-category $C$.
 \label{item gen inf cat}
@@ -354,8 +338,7 @@ see \cref{exc 2-Segal defs}.
 Also note that upper and lower 2-Segal spaces are independently of interest: Garner--Kock--Weber \cite{GarnerKockWeber:OCD} showed that unary operadic categories are the same thing as upper 2-Segal sets (see also \cite{Hackney:OC2SS}), while Carawan \cite{Carawan:2SMACWC} gives examples of lower 2-Segal objects coming from the $S_\bullet$-construction applied to a cofibration category.
 
 \begin{example}[Simplicial groupoid of rooted forests]\label{ex forests}
-A fundamental example of \cite{GKT1} %, which will reappear in \cite{Tonks:BIRS}, 
-concerns the simplicial groupoid $H$ which underlies the Butcher--Connes--Kreimer Hopf algebra \cite{ConnesKreimer:HARNG}.
+A fundamental example of \cite{GKT1} concerns the simplicial groupoid $H$ which underlies the Butcher--Connes--Kreimer Hopf algebra \cite{ConnesKreimer:HARNG}.
 For $n \geq 0$, $H_{n+1}$ is the groupoid of forests together with $n$ (compatible) admissible cuts.
 For example, the following forest is an object of $H_1$,
 \begin{center}
@@ -392,7 +375,6 @@ As an illustration, the tree with two cuts in the upper left of the following sq
   (sw) edge node[swap] {$d_1$} (se);
 \end{tikzpicture}
 \end{center}
-% Morphisms are more delicate, and it turns out that the squares from \eqref{eq upper and lower 2-Segal} are only \emph{homotopy} pullbacks of groupoids.
 \end{example}
 
 \begin{example}[Partial monoids]\label{ex partial monoid} In \cite[\S2]{Segal:CSILS}, a \emph{partial monoid} is defined to be a set $M$ together with an identity element $1\in M$ and a partially defined multiplication function $M \times M \nrightarrow M$.
@@ -523,8 +505,7 @@ Thus $X$ is upper 2-Segal.
 
 
 \begin{lemma}\label{lem higher degen}
-Suppose $X$ is an upper %(resp.\ lower) 
-2-Segal space.
+Suppose $X$ is an upper 2-Segal space.
 If $n > 0$ and $0\leq i \leq n$, then the square
 \[ \begin{tikzcd}
 X_{n+1} \rar{s_{i+1}} \dar[swap]{d_\bot} \ar[dr, phantom, "\lrcorner" very near start]  & X_{n+2} \dar{d_\bot} \\
@@ -742,7 +723,6 @@ For the inductive step, use the two rectangles from the proof of \cref{segal imp
 We now turn to the path space criterion, which is originally due to Dyckerhoff--Kapranov \cite[Theorem 6.3.2]{DyckerhoffKapranov:HSS}.
 Our presentation separates the lower and upper 2-Segal conditions, following Poguntke \cite{Poguntke:HSSAKT}, who also gave higher-dimensional versions.
 A version for decomposition spaces appeared as \cite[Theorem 4.10]{GKT1}.
-% According to \cite[p.\ 959]{GKT1}
 
 \begin{theorem}\label{thm upper path}
 A simplicial space $X$ is upper 2-Segal if and only if its upper d\'ecalage $\udec X$ is Segal.
