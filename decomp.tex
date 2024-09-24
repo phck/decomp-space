@@ -180,7 +180,7 @@ Special thanks go to Matt Feller, Joachim Kock, Justin Lynd, Felix Naß, and Wal
 
 The \emph{simplicial category} $\Delta$ has objects $[n] = \{0 < 1 < \cdots < n\}$ for $n\geq 0$, and morphisms are the (weakly) order preserving maps (if $i \leq j$, then $\alpha(i) \leq \alpha(j)$).
 Let us recall the standard generating maps for this category.
-For each $i = 0, 1, \dots, n$, there is a \emph{coface map} $\delta^i \colon [n-1] \to [n]$ which is injective and does not have $i$ in its image, and a \emph{codegeneracy map} $\sigma^i \colon [n+1] \to [n]$ which is surjective with the preimage of $i$ having cardinality two. %\footnote{Strictly speaking, we should tag these with an $n$ as well.}
+For each $i = 0, 1, \dots, n$, there is a \emph{coface map} $\delta^i \colon [n-1] \to [n]$ which is injective and does not have $i$ in its image, and a \emph{codegeneracy map} $\sigma^i \colon [n+1] \to [n]$ which is surjective with the preimage of $i$ having cardinality two. 
 In formulas:
 \begin{align*}
   \delta^i(k) &= \begin{cases}
@@ -213,12 +213,14 @@ d_i s_j &= \begin{cases}
 \end{align*}
 Vertical reflection of the picture \eqref{diag simplicial object} yields the following contrivance, which will allow us to infer some statements by duality.
 
+\begin{definition}
 If $X$ is a simplicial object, then its \emph{opposite} $X^\op$ has $(X^\op)_n = X_n$ together with the following face and degeneracy operators: \begin{align*} \big( d_k^{\op} \colon X^\op_n \to X^\op_{n-1} \big) &= \big( d_{n-k} \colon X_n \to X_{n-1} \big)
 \\
 \big( s_k^{\op} \colon X^\op_n \to X^\op_{n+1} \big) &= \big( s_{n-k} \colon X_n \to X_{n+1} \big).
 \end{align*}
 More formally, there is an endofunctor $\Delta \to \Delta$ which sends $f \colon [n] \to [m]$ to $g \colon [n] \to [m]$ with $g(i) = m-f(n-i)$.
 The functor $X^\op \colon \Delta^\op \to \spaces$ is given by precomposing $X$ with this endofunctor.
+\end{definition}
 
 We say that a morphism $\alpha \colon [n] \to [m]$ in $\Delta$ is \emph{active} if it is endpoint preserving, that is, if $\alpha(0) = 0$ and $\alpha(n) = m$.
 Active maps will denoted by arrows with right arrow to bar %\footnote{\texttt{\&rarrb;} in HTML, but unfortunately not present in standard \LaTeX{} packages.}
@@ -311,7 +313,7 @@ X_m \rar[swap]{\alpha^*} & X_n
 
 \begin{convention}\label{conv pullback}
 In this definition, and in what follows, `pullback' means `pullback in the $(\infty,1)$-category of spaces' or `homotopy pullback.'
-For a reader working with simplicial sets rather than simplicial spaces, these will just be ordinary pullbacks.\footnote{When working under option \eqref{item gen cat} from \cref{sec ways to read}, one will use ordinary pullbacks in $C$, and when working under option \eqref{item gen inf cat} one will use $(\infty,1)$-categorical pullbacks.}
+For a reader working with simplicial sets rather than simplicial spaces, these will just be ordinary pullbacks.
 \end{convention}
 
 A simplicial set which is a decomposition space will be called a \emph{discrete decomposition space}.
@@ -410,14 +412,14 @@ Let $\catpar$ denote the category whose objects are sets and whose morphisms are
 \begin{exercise}
 Let $C$ be a small category enriched in $\catpar$.
 Show that if the set $C(x,x)$ is inhabited for every object $x$ of $C$, then $C$ determines a simplicial set which is 2-Segal.
-(Without this assumption, one still obtains a semi-simplicial 2-Segal set.) 
+% (Without this assumption, one still obtains a semi-simplicial 2-Segal set.) 
 \end{exercise}
 
 \begin{remark}
 Each partial monoid may be regarded as a monoid with a zero element, by adjoining a new absorbing element $0$ to $M$ and declaring that all undefined multiplications take $0$ as their value.
 Likewise, for any monoid with a zero element different from $1$, we obtain a partial monoid by discarding $0$.
 In a similar manner, the $\catpar$-enriched categories from the preceding exercise correspond to categories with zero morphisms. % \cite[\S1.7]{Pareigis:CF}.
-(Also note that $\catpar$-enriched categories are a special case of the multivalued categories of \cite[\S3.3]{DyckerhoffKapranov:HSS}.)
+% (Also note that $\catpar$-enriched categories are a special case of the multivalued categories of \cite[\S3.3]{DyckerhoffKapranov:HSS}.)
 \end{remark}
 
 We mention, in passing, a class of maps which plays an important role in the theory of decomposition spaces.
@@ -694,9 +696,6 @@ is an equivalence. \label{item usual Segal}
 Prove that \eqref{item pullback Segal} and \eqref{item usual Segal} in \cref{def Segal} are equivalent. (For a hint or solution, see \cite[Lemma 2.10]{GKT1}.)
 \end{exercise}
 % \footnote{Additional equivalent conditions may be found in \cite[Lemma 2.10]{GKT1}.}
-
-% As in \cref{conv pullback}, the pullbacks appearing in \eqref{item usual Segal} are homotopy pullbacks.
-% Note that $X$ is Segal if and only if $X^\op$ is Segal.
 
 \begin{proposition}\label{segal implies decomposition}
 Every Segal space is a decomposition space.
@@ -1097,6 +1096,14 @@ We leave many other interesting examples to \cite{HackneyKock:FDS}, and conclude
 The category of outer face complexes is equivalent to the category of culf maps over $B\mathbb{N}$.
 \end{theorem}
 
+\begin{exercise}
+Suppose $X \to B\mathbb{N}$ is culf; by \cite[Lemma 4.6]{GKT1}, $X$ is a decomposition space.
+Define the length of an edge via the function $X_1 \to B\mathbb{N}_1 = \mathbb{N}$, and let $A_m \subseteq X_1$ be the set of length $m$ edges.
+Similarly there is a notion of multilength on $k$-simplices of $X$.
+Endow the graded set $\{A_m\}$ with the structure of an outer face complex, in a way that reverses $j_!$-construction above.
+\end{exercise}
+
+\begin{comment}
 Though we will not prove this, let us give a brief indication of why one might expect the $j_!$-construction to be reversible.
 Having any map $X \to B\mathbb{N}$ allows us to write $X_1 \cong \sum A_m$, by letting $A_m\subseteq X_1$ be the fiber at $m$ of $X_1 \to B\mathbb{N}_1 = \mathbb{N}$.
 Similarly we can write $X_k \cong \sum A_{\ell_1, \dots, \ell_k}$ by taking fibers of $X_k \to B\mathbb{N}_k = \mathbb{N}^k$.
@@ -1109,6 +1116,7 @@ A_{m+1} \dar[hook] & A_{1,m} \dar[hook] \lar[swap]{\cong} \rar & A_m \dar[hook] 
 X_1 & X_2 \rar[swap]{d_0} \lar{d_1} & X_1
 \end{tikzcd} \]
 and similarly for $d_\top$.
+\end{comment}
 
 % This is the main theorem of \cite{HackneyKock:FDS}.
 % While we have not explained what a culf map is (a natural transformation whose restriction to $\delact$ is cartesian), this important concept will play a key role in other papers in this volume \cite{CooperYoung:BIRS,GKT:DSC}.
