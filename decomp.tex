@@ -1,4 +1,5 @@
 \documentclass{amsart}
+\pdfoutput=1 % For arXiv. Remove if using XeLaTeX or LuaLaTex.
 \usepackage[svgnames]{xcolor}
 \usepackage{amssymb}
 \usepackage{tikz-cd}
@@ -8,7 +9,10 @@
   linktocpage=true,
   citecolor=ForestGreen,
   linkcolor=MediumOrchid,
-  urlcolor=MediumOrchid]{hyperref}
+  urlcolor=MediumOrchid,
+  pdftitle={The Decomposition Space Perspective},
+  pdfauthor={Philip Hackney},
+  pdfkeywords={decomposition space, 2-Segal space}]{hyperref}
 \usepackage[capitalise]{cleveref}
 \usepackage{enumitem}
 \usepackage{mathtools}
@@ -75,7 +79,7 @@ colorinlistoftodos,disable]
 
 \title{The Decomposition Space Perspective}
 \author{Philip Hackney}
-\address{Department of Mathematics, University of Louisiana at Lafayette, USA}
+\address{Department of Mathematics, University of Louisiana at Lafayette}
 \email{philip@phck.net}
 \thanks{This work was supported by a grant from the Simons Foundation (\#850849) and by the Louisiana Board of Regents through the Board of Regents Support fund LEQSF(2024-27)-RD-A-31.}
 
@@ -107,7 +111,7 @@ Their goals were to develop a very general framework for incidence algebras and 
 Further developments along these lines came later, including consideration of antipodes \cite{CarlierKock:AMDS}, incorporation of Schmitt's hereditary species into the picture \cite{Carlier:HSMDS}, investigation of the universality of Lawvere's Hopf algebra of M\"obius intervals \cite{Forero:GCKTCLDDS}, and the introduction of a new type of species governing other known Hopf algebras \cite{CebrianForero:DHSDS}.
 See the introduction of \cite{GKT:DSC}, in this volume, for a more thorough account of these and other developments.
 
-The aim of this paper is to give a gentle introduction to decomposition spaces, similar to Stern's introduction to 2-Segal spaces from this volume \cite{Stern:BIRS}.
+The aim of this paper is to give a gentle introduction to decomposition spaces, similar to Stern's introduction to 2-Segal spaces \cite{Stern:BIRS}.
 The theory of decomposition spaces encourages us to reduce as much as possible to a calculus of pullback squares, and we try to follow this principle whenever feasible.
 All told, the prerequisites for this work are mild, and similar to \cite{Stern:BIRS}: some elementary category theory, and some comfort with simplicial sets (but see \cref{sec ways to read}).
 
@@ -158,7 +162,7 @@ A number of sources, especially on the 2-Segal side of things, give model catego
 This paper originated from my talks at the workshop ``Higher Segal Spaces and their Applications to Algebraic K-Theory, Hall Algebras, and Combinatorics'' held at the Banff International Research Station (BIRS) in January 2024.
 I thank the workshop organizers (Julie Bergner, Joachim Kock, Maru Sarazola) for cultivating a vibrant and stimulating atmosphere and giving me the opportunity to speak, and BIRS for providing an ideal venue for the event.
 I am grateful to the other participants for their contributions and discussions.
-Special thanks go to Matt Feller, Joachim Kock, Justin Lynd, Felix Naß, and Walker Stern.
+Special thanks go to Julie Bergner, Matt Feller, Joachim Kock, Justin Lynd, Felix Naß, and Walker Stern.
 
 \section{The active-inert factorization system on the simplicial category}\label{sec act inert fact}
 
@@ -353,9 +357,6 @@ The outer faces clip above and below the cut, producing
 \includegraphics[scale=0.2]{forest_cut_0.pdf} \qquad and \qquad \includegraphics[scale=0.2]{forest_cut_2.pdf} 
 \end{center}
 This is a 2-Segal space (but not a Segal space in the sense of \cref{def Segal} below, as there are many 2-simplices having the above forests as their outer faces).
-% \[ \begin{tikzcd}
-% \includegraphics[scale=0.2]{tree_nw.pdf} \rar[mapsto,"d_2"] & \includegraphics[scale=0.2]{tree_ne.pdf} 
-% \end{tikzcd} \]
 As an illustration, the tree with two cuts in the upper left of the following square (which is an element of $H_3$) is uniquely determined by the remainder of the diagram, giving an indication of why the right square of \eqref{eq upper and lower 2-Segal} is a pullback in the case $n=2$.
 \begin{center}
 \begin{tikzpicture}[commutative diagrams/every diagram]
@@ -400,7 +401,7 @@ Show that if the set $C(x,x)$ is inhabited for every object $x$ of $C$, then $C$
 \begin{remark}
 Each partial monoid may be regarded as a monoid with a zero element, by adjoining a new absorbing element $0$ to $M$ and declaring that all undefined multiplications take $0$ as their value.
 Likewise, for any monoid with a zero element different from $1$, we obtain a partial monoid by discarding $0$.
-In a similar manner, the $\catpar$-enriched categories from the preceding exercise correspond to categories with zero morphisms. % \cite[\S1.7]{Pareigis:CF}.
+In a similar manner, the $\catpar$-enriched categories from the preceding exercise correspond to categories with (nonidentity) zero morphisms \cite[\S1.7]{Pareigis:CF}.
 % (Also note that $\catpar$-enriched categories are a special case of the multivalued categories of \cite[\S3.3]{DyckerhoffKapranov:HSS}.)
 \end{remark}
 
@@ -582,7 +583,6 @@ d_0 & \vline & d_0
 \end{matrix}
 \]
 with $DS = \id$.
-%See \cite{Feller_et_al:E2SSU} for details. 
 More explicitly, maps between squares are cubes, and the diagram
   \[
   \begin{tikzcd}[sep={30pt,between origins}]
@@ -676,13 +676,12 @@ is an equivalence. \label{item usual Segal}
 \begin{exercise}
 Prove that \eqref{item pullback Segal} and \eqref{item usual Segal} in \cref{def Segal} are equivalent. (For a hint or solution, see \cite[Lemma 2.10]{GKT1}.)
 \end{exercise}
-% \footnote{Additional equivalent conditions may be found in \cite[Lemma 2.10]{GKT1}.}
 
 \begin{proposition}\label{segal implies decomposition}
 Every Segal space is a decomposition space.
 \end{proposition}
 \begin{proof}
-We'll show that every Segal space is upper 2-Segal.
+We will show that every Segal space is upper 2-Segal.
 Since the opposite of a Segal space is a Segal space, and the opposite of an upper 2-Segal space is a lower 2-Segal space, this will suffice.
 By \cref{prop fewer squares}, we need only show that the left square in the following diagram is a pullback.
 The right square is a pullback since $X$ is Segal.
@@ -948,7 +947,7 @@ An \emph{outer face complex} is a presheaf on the category of inert maps, that i
 \end{definition}
 
 As the top and bottom coface maps in $\Delta$ generate the subcategory $\delint$, an outer face complex is given by a sequence of sets and maps as displayed (compare to \eqref{diag simplicial object}):
-\begin{equation}%\label{diag outer face} 
+\begin{equation}
 \begin{tikzcd}
 A_0 & A_1 \lar[shift left, "d_\bot"] \lar[shift right, "d_\top"']  & A_2 \lar[shift left, "d_\bot"] \lar[shift right, "d_\top"']
  &
