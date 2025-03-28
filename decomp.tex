@@ -121,7 +121,7 @@ This was first observed for \emph{unital} 2-Segal spaces, as described in \cite[
 \begin{quote}
 The coincidence of the notions was noticed by Mathieu Anel because two of the basic results are the same: specifically, the characterisation in terms of decalage and Segal spaces \dots{} and the result that the Waldhausen $S_\bullet$-construction of a stable $\infty$-category is a decomposition space \dots{}
 \end{quote}
-Later on it was realized by Feller \emph{et~al.} \cite{Feller_et_al:E2SSU} that, in fact, the unitality condition is automatic, providing the missing ingredient to see that 2-Segal spaces and decomposition spaces are the same. 
+Later on it was realized by Feller, Garner, Kock, Proulx, and Weber \cite{Feller_et_al:E2SSU} that, in fact, the unitality condition is automatic, providing the missing ingredient to see that 2-Segal spaces and decomposition spaces are the same. 
 We will give an account of the equivalence in \cref{sec 2-Segl decomp}, following \cite{GKT1,Feller_et_al:E2SSU}.
 
 The next three sections (\S\ref{sec segal spaces}, \S\ref{sec path space}, \S\ref{sec edgewise}) are all about relationships between decomposition spaces and Segal spaces.
@@ -135,9 +135,10 @@ The last section of the paper describes a source of examples of decomposition sp
 There is fundamental material about decomposition spaces that is not covered in depth here, but can be found in the original sources and in other papers in this volume.
 
 \subsection{Ways to read this paper}\label{sec ways to read}
-In following the original sources \cite{GKT1,GKT2,GKT3}, we have elected mostly to phrase everything within the $(\infty,1)$-category of simplicial \emph{spaces}.
-But knowing about $(\infty,1)$-categories and homotopy limits and such is not a prerequisite for this paper.
-Readers may safely replace ``spaces'' with ``sets'' and replace any homotopy pullbacks/limits with ordinary pullbacks/limits.
+In following the original sources \cite{GKT1,GKT2,GKT3}, we have elected mostly to phrase everything within the $(\infty,1)$-category of simplicial \emph{spaces}.\footnote{For concreteness, `$(\infty,1)$-category' may be interpreted to mean `quasi-category' / `$\infty$-category.' 
+That said, as in the original sources (see \cite[1.3]{GKT1}), we work in a model-independent, synthetic fashion, and use nothing specific to quasi-categories.}
+But knowing about $(\infty,1)$-categories and their limits and such is not a prerequisite for this paper.
+Readers may safely replace ``spaces'' with ``sets'' and replace any infinity-categorical pullbacks/limits with ordinary pullbacks/limits.
 In more detail, any of the following are valid ways to read this paper:
 \begin{enumerate}[left=0pt]
 \item Focus solely on the category $\sset \coloneqq \fun(\Delta^\op, \set)$ of simplicial sets. 
@@ -150,7 +151,7 @@ Particular examples may not make sense in this generality.
 \item Work in the $(\infty,1)$-category $\sspace \coloneqq \fun(\Delta^\op, \spaces)$ of space-valued presheaves on $\Delta$.
 Here $\spaces$ denotes the $(\infty,1)$-category of spaces (or $\infty$-groupoids).
 See \cite{GKT1} for details.
-We emphasize that any pullbacks or limits that appear are necessarily \emph{homotopy} pullbacks or limits (see \cref{conv pullback}).
+We emphasize that any pullbacks or limits that appear are necessarily infinity-categorical pullbacks or limits (see \cref{conv pullback}).
 \item 
 One could also work with simplicial objects in an arbitrary $(\infty,1)$-category $C$.
 \label{item gen inf cat}
@@ -242,7 +243,7 @@ A bit more thought will show that this is the \emph{only} active-inert factoriza
 \begin{lemma}
 The pair of subcategories $(\delact, \delint)$ constitutes a factorization system on $\Delta$. \qed
 \end{lemma}
-An \emph{orthogonal factorization system} on a category $C$ consists of a pair of wide subcategories $(L,R)$ such that every map in $C$ factors as $r\circ \ell$ for some $r\in R$ and $\ell \in L$, this factorization is unique up to unique isomorphism, and $L\cap R$ contains all isomorphisms.
+An \emph{orthogonal factorization system}\footnote{The name `orthogonal' comes from the following lifting property: for every commutative square  $\begin{tikzcd}[cramped, sep=small, ampersand replacement=\&] \cdot \dar[swap]{\ell} \rar \& \cdot \dar{r} \\ \cdot \rar \urar[dotted] \& \cdot  \end{tikzcd}$  with $\ell \in L$ and $r\in R$, there exists a unique dotted map making both triangles commute.} on a category $C$ consists of a pair of wide subcategories $(L,R)$ such that every map in $C$ factors as $r\circ \ell$ for some $r\in R$ and $\ell \in L$, this factorization is unique up to unique isomorphism, and $L\cap R$ contains all isomorphisms.
 A \emph{strict factorization system} is similar, except that we only require one condition of the wide subcategories: every map factors \emph{uniquely} as $r\circ \ell$.
 In general, the two notions are not directly comparable (though there is an enveloping construction for strict factorization systems \cite[2.1]{Grandis:WSEMCC}, \cite[3.1]{RosebrughWood:DLF}), but in our case there is no ambiguity as the only isomorphisms in $\Delta$ are identities.
 Generalizations of this factorization system to other shape categories are an essential component of Segalic approaches to higher structures \cite{Berger:MCO,ChuHaugseng:HCASC,Hackney:SCGO} (see \cref{def Segal} below).
@@ -277,7 +278,9 @@ The map $\phi$ is given by
 
 \section{Decomposition spaces and 2-Segal spaces}\label{sec decomp vs 2-segal}
 
-With active-inert pushouts in hand, we are ready to define the following \cite[\S3]{GKT1}:
+With active-inert pushouts in hand, we are ready to define decomposition spaces \cite[\S3]{GKT1}.
+While categories encode associative and unital \emph{composition} of morphisms, decomposition spaces shift attention to possible \emph{decompositions} of morphisms, requiring these to be associative and unital in an appropriate sense.
+This idea can be used to encode a number of coalgebras which come from decomposition of combinatorial structures into smaller pieces (see \cref{ex forests}) via a general incidence coalgebra construction \cite{CooperYoung:BIRS,GKT1,GKT:DSC}.
 
 \begin{definition}[Decomposition space]\label{def decomp space}
 A simplicial space $X$ is a \emph{decomposition space} if it sends every active-inert pushout square to a pullback square.
@@ -405,12 +408,17 @@ In a similar manner, the $\catpar$-enriched categories from the preceding exerci
 % (Also note that $\catpar$-enriched categories are a special case of the multivalued categories of \cite[\S3.3]{DyckerhoffKapranov:HSS}.)
 \end{remark}
 
+The examples of partial monoids and $\catpar$-enriched categories suggest a useful perspective: simplicial sets which are 2-Segal (or equivalently, discrete decomposition spaces) can be understood as encoding multivalued ``associative'' composition laws.
+See \cite[\S3.3]{DyckerhoffKapranov:HSS} and \cite{Stern:BIRS} for precise statements.
+The preceding examples cover the case composition having at most one value, and the single-valued composition laws correspond to the Segal objects (\cref{sec segal spaces}).
+
 We mention, in passing, a class of maps which plays an important role in the theory of decomposition spaces.
 These maps will not make a significant appearance in this paper, but will reappear elsewhere in this volume \cite{CooperYoung:BIRS,GKT:DSC}.
+In particular, \cite{CooperYoung:BIRS} explains why a culf map between decomposition spaces induces a coalgebra homomorphism between the associated incidence coalgebras (originally from \cite[Lemma 8.2]{GKT1}).
 
 \begin{definition}[Culf maps]\label{def culf}
 A map $f \colon X \to Y$ between simplicial spaces is \emph{culf} if it is cartesian on active maps.
-Concretely, this means that following squares are pullbacks, for $0 < i < n$ and $0\leq j \leq n$.
+Concretely, this means that the following squares are pullbacks, for $0 < i < n$ and $0\leq j \leq n$.
 \[ \begin{tikzcd}
 X_n \rar{d_i} \dar[swap]{f} \ar[dr, phantom, "\lrcorner" very near start]  & X_{n-1} \dar{f} 
 & &
@@ -781,7 +789,7 @@ When $X$ is a decomposition space, it turns out that the maps $d_\top \colon \ud
 In this section we explain the following theorem from \cite{BOORS:ESC}.
 The proof presented here utilizes the exact same techniques that we have been using since \cref{sec 2-Segl decomp}.
 This proof relies on the path space criterion (\cref{cor path space}), which is appropriate as there is a close connection between the edgewise subdivision and the upper/lower d\'ecalage pair.\phnote{Additionally, this theorem can be interpreted in terms of the double-categorical perspective from \cite{BOORS:2SSWC}.}
-\begin{theorem}[Bergner \emph{et al.}]\label{thm edgewise}
+\begin{theorem}[Bergner, Osorno, Ozornova, Rovelli, Scheimbauer]\label{thm edgewise}
 A simplicial space $X$ is a decomposition space if and only if its edgewise subdivision $\sd X$ is Segal.
 \end{theorem}
 
@@ -1059,7 +1067,7 @@ Notice that the decomposition space of words of length at most $N$ also falls un
 % The truncation procedure from \eqref{eq truncation} can be done to any outer face complex.
 % Uniformity means that we can also adjust an outer face complex by shifting indices up or down (inserting $\ast$ at the bottom when shifting up).
 
-\begin{example}
+\begin{example}\label{ex dir graph}
 Let $G$ be a directed graph, such as the following.
 \[ \begin{tikzcd}[row sep=tiny]
 &[-0.2cm] \bullet \rar[bend left,"b"] \rar[bend right,"c"] & \bullet \ar[lld, bend left, "d"]  \\
@@ -1076,6 +1084,8 @@ The category of outer face complexes is equivalent to the category of culf maps 
 \end{theorem}
 
 The theorem says, roughly, that outer face complexes may be identified with decomposition spaces $X$ equipped with a well-behaved notion of (integer-valued) edge length.
+One can classify the CULF maps over $B\mathbb{N}$ whose domains are Segal; these are precisely those categories which are free on a directed graph \cite[\S1]{Street:CS}.
+The corresponding outer face complex is exactly the one from the first part of \cref{ex dir graph} (see \cite[4.1]{HackneyKock:FDS}).
 
 \begin{comment}
 \begin{exercise}
